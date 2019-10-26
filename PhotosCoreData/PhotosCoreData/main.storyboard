@@ -16,10 +16,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="116" id="eR3-Ix-WAO" customClass="MealTableViewCell" customModule="PhotosCoreData" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mealCell" rowHeight="116" id="eR3-Ix-WAO" customClass="MealTableViewCell" customModule="PhotosCoreData" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="116"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eR3-Ix-WAO" id="cav-mG-Ojk">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eR3-Ix-WAO" id="cav-mG-Ojk" customClass="MealTableViewCell" customModule="PhotosCoreData" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -38,6 +38,20 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="modified:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Og9-P6-mGg">
+                                            <rect key="frame" x="194" y="85" width="61" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KXQ-Oo-GXN">
+                                            <rect key="frame" x="263" y="85" width="36" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="lfy-CF-oda" firstAttribute="top" secondItem="cav-mG-Ojk" secondAttribute="top" constant="11" id="214-sG-oqt"/>
@@ -53,6 +67,11 @@
                                         <constraint firstItem="lfy-CF-oda" firstAttribute="leading" secondItem="hfS-4B-DqY" secondAttribute="trailing" constant="24" id="lm7-M3-i9v"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="locationLabel" destination="5c9-fE-6Vn" id="UJU-IX-yWX"/>
+                                    <outlet property="modifiedLabel" destination="KXQ-Oo-GXN" id="HwL-zc-Xc5"/>
+                                    <outlet property="titleLabel" destination="lfy-CF-oda" id="ZW2-vZ-FKl"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -69,7 +88,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mealTableView" destination="yOA-8q-NNc" id="9Dd-9L-Vfn"/>
-                        <outlet property="tableView" destination="yOA-8q-NNc" id="vxf-fm-JUC"/>
                         <segue destination="tu2-qV-zyc" kind="show" id="t1x-QE-ukR"/>
                     </connections>
                 </tableViewController>
@@ -77,7 +95,7 @@
             </objects>
             <point key="canvasLocation" x="321.73913043478262" y="129.91071428571428"/>
         </scene>
-        <!--New Meal View Controller-->
+        <!--Title-->
         <scene sceneID="jU9-VT-wQs">
             <objects>
                 <viewController id="tu2-qV-zyc" customClass="NewMealViewController" customModule="PhotosCoreData" customModuleProvider="target" sceneMemberID="viewController">
@@ -133,7 +151,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NYo-ru-EQA"/>
                     </view>
-                    <navigationItem key="navigationItem" id="CqW-6T-Wco"/>
+                    <navigationItem key="navigationItem" title="Title" id="sIb-2Y-V8L">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="mth-rD-fUl">
+                            <connections>
+                                <action selector="save:" destination="tu2-qV-zyc" id="O9n-Mm-Kal"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="locationTextField" destination="jht-YB-G0y" id="bd5-Ty-4aj"/>
+                        <outlet property="mealImage" destination="hOh-Ee-MRv" id="Nb9-np-lHm"/>
+                        <outlet property="titleTextField" destination="4kJ-JT-yiq" id="MbX-jn-SPg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KJt-wb-lqc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

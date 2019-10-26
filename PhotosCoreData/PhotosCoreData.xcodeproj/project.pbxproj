@@ -14,6 +14,7 @@
 		C6467751235E1A69003C0684 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C646774F235E1A69003C0684 /* LaunchScreen.storyboard */; };
 		C646775C235E1A69003C0684 /* PhotosCoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646775B235E1A69003C0684 /* PhotosCoreDataTests.swift */; };
 		C6467767235E1A69003C0684 /* PhotosCoreDataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6467766235E1A69003C0684 /* PhotosCoreDataUITests.swift */; };
+		C64EDDE2236355810039202F /* MealTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64EDDE1236355810039202F /* MealTableViewCell.swift */; };
 		C69245F72362675D00112844 /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C69245F62362675D00112844 /* main.storyboard */; };
 		C69245FB2362911A00112844 /* NewMealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69245FA2362911A00112844 /* NewMealViewController.swift */; };
 		C69245FD2362915D00112844 /* MealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69245FC2362915D00112844 /* MealTableViewController.swift */; };
@@ -52,6 +53,7 @@
 		C6467762235E1A69003C0684 /* PhotosCoreDataUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotosCoreDataUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6467766235E1A69003C0684 /* PhotosCoreDataUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCoreDataUITests.swift; sourceTree = "<group>"; };
 		C6467768235E1A69003C0684 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C64EDDE1236355810039202F /* MealTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTableViewCell.swift; sourceTree = "<group>"; };
 		C69245F62362675D00112844 /* main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = main.storyboard; sourceTree = "<group>"; };
 		C69245FA2362911A00112844 /* NewMealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMealViewController.swift; sourceTree = "<group>"; };
 		C69245FC2362915D00112844 /* MealTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTableViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				C69245FF23629B5900112844 /* Meal+CoreDataProperties.swift */,
 				C6467741235E1A68003C0684 /* AppDelegate.swift */,
 				C6467743235E1A68003C0684 /* SceneDelegate.swift */,
+				C64EDDE1236355810039202F /* MealTableViewCell.swift */,
 				C69245FA2362911A00112844 /* NewMealViewController.swift */,
 				C69245FC2362915D00112844 /* MealTableViewController.swift */,
 				C69245F62362675D00112844 /* main.storyboard */,
@@ -275,6 +278,7 @@
 				C692460123629B5900112844 /* Meal+CoreDataProperties.swift in Sources */,
 				C69245FD2362915D00112844 /* MealTableViewController.swift in Sources */,
 				C6467742235E1A68003C0684 /* AppDelegate.swift in Sources */,
+				C64EDDE2236355810039202F /* MealTableViewCell.swift in Sources */,
 				C6467744235E1A68003C0684 /* SceneDelegate.swift in Sources */,
 				C646774C235E1A68003C0684 /* PhotosCoreData.xcdatamodeld in Sources */,
 				C69245FB2362911A00112844 /* NewMealViewController.swift in Sources */,

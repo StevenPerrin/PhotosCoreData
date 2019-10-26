@@ -7,46 +7,114 @@
 //
 
 import UIKit
+import CoreData
 
-class MealTableViewController: UITableViewController {
+class MealTableViewController: UITableViewController{
     
     
-    @IBOutlet var mealTableView: UITableView!
-    
-    
+    @IBOutlet weak var mealTableView: UITableView!
+    let dateFormatter = DateFormatter()
+    var meals = [Meal]()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .medium
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    func alertNotifyUser(message: String) {
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel) {
+            (alertAction) -> Void in
+            print("OK selected")
+        })
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func fetchMeals() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<Meal> = Meal.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        do {
+            meals = try managedContext.fetch(fetchRequest)
+        } catch {
+            alertNotifyUser(message: "Fetch for meal record could not be performed")
+            return
+        }
+    }
+    
+    func deleteDocument(at indexPath: IndexPath) {
+        let document = meals[indexPath.row]
+        
+        if let managedObjectContext = document.managedObjectContext {
+            managedObjectContext.delete(document)
+            
+            do {
+                try managedObjectContext.save()
+                self.meals.remove(at: indexPath.row)
+                mealTableView.deleteRows(at: [indexPath], with: .automatic)
+            } catch {
+                alertNotifyUser(message: "Delete failed.")
+                mealTableView.reloadData()
+            }
+        }
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return meals.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mealCell", for: indexPath)
+        
+        if let cell = cell as? MealTableViewCell {
+            let meal = meals[indexPath.row]
+            cell.titleLabel.text = meal.title
+            
+            if let modifiedDate = meal.modifiedDate {
+                cell.modifiedLabel.text = dateFormatter.string(from: modifiedDate)
+            } else {
+                cell.modifiedLabel.text = "unkown"
+            }
+        }
 
         return cell
     }
-    */
+    
+    override func didReceiveMemoryWarning() {
+           super.didReceiveMemoryWarning()
+           // Dispose of any resources that can be recreated.
+       }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? NewMealViewController,
+           let segueIdentifier = segue.identifier, segueIdentifier == "existingDocument",
+           let row = mealTableView.indexPathForSelectedRow?.row {
+                destination.meal = meals[row]
+        }
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.
